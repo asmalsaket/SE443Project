@@ -36,17 +36,17 @@ print("Publisher service replicas:", service.attrs["Spec"]["Mode"]["Replicated"]
 
 
 # shut down and clean up
-client.services.get("Subscriber").remove()
+client.services.get("subscriber").remove()
 print("\nSubs deleted")
 
 
-client.services.get("Publisher").remove()
+client.services.get("publisher").remove()
 print("\nPubl deleted ")
 
 
 
 
-client.services.get("Broker").remove()
+client.services.get("broker").remove()
 print("\nBroker deleted")
 
 
