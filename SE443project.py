@@ -33,3 +33,27 @@ print("Subscriber service replicas:", service.attrs["Spec"]["Mode"] ["Replicated
 service = client.services.create("efrecon/mqtt-client",name="publisher",replicas=3,restart_policy={"Name": "always"},networks=[network],ID:", service.id)
 print("Publisher service name:",service.name)
 print("Publisher service replicas:", service.attrs["Spec"]["Mode"]["Replicated"]["Replicas"])
+
+
+# shut down and clean up
+client.services.get("Subscriber").remove()
+print("\nSubs deleted")
+
+
+client.services.get("Publisher").remove()
+print("\nPubl deleted ")
+
+
+
+
+client.services.get("Broker").remove()
+print("\nBroker deleted")
+
+
+client.networks.get("se443_test_net").remove()
+print("\nNetwork deleted")
+
+
+
+client.swarm.leave(force=True)
+print("\nswarm deleted")
